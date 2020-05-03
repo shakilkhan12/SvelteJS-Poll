@@ -13,42 +13,20 @@
 		
 	}
 
-	// Polls 
-	let polls = [
-		{
-			id: 1,
-			question: 'Python or Javascript',
-			answerA: 'Python',
-			answerB: 'Javascript',
-			votesA: 9,
-			votesB: 15
-		}
-	]
 	const handleAdd = (e) => {
-		const poll = e.detail;
-		polls = [poll, ...polls];
+		// const poll = e.detail;
+		// polls = [poll, ...polls];
 		activeItem = "Current Polls";
-		console.log(polls);
+	
 	}
-	const handleVote = (e) => {
-		const {option, id} = e.detail;
-		let copiedPolls = [...polls];
-		let upvotedPoll = copiedPolls.find((poll) => poll.id === id);
-		if(option === "a"){
-			upvotedPoll.votesA++;
-		}
-		if(option === "b"){
-			upvotedPoll.votesB++;
-		}
-		polls = copiedPolls;
-	}
+	
 </script>
 
 <Header />
 <main>
 	<Tabs {items} {activeItem} on:tabChange={tabUpdate} />
 	{#if activeItem === 'Current Polls'}
-	  <PollList {polls} on:vote={handleVote} />
+	  <PollList />
 	  {:else if activeItem === 'Add New Poll' }
 	  <CreatePollForm on:add={handleAdd} />
 	{/if}
